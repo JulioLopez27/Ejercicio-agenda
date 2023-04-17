@@ -1,8 +1,8 @@
 package main;
 
 import dominio.Usuario;
-import presentacion.CrearContactoConsola;
-import presentacion.LoginConsola;
+import interfazConsola.CrearContactoConsola;
+import interfazConsola.LoginConsola;
 import utilidades.Consola;
 
 public class AgendaConsola {
