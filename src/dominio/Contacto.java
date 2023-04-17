@@ -1,0 +1,55 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package dominio;
+
+/**
+ *
+ * @author Julio Cesar
+ */
+public class Contacto {
+
+    TipoContacto tipoContacto;
+    String nombre;
+    String telefono;
+
+    public Contacto(TipoContacto tipoContacto, String nombre, String telefono) {
+        this.tipoContacto = tipoContacto;
+        this.nombre = nombre;
+        this.telefono = telefono;
+    }
+
+    public Contacto() {
+    }
+
+    public TipoContacto getTipoContacto() {
+        return tipoContacto;
+    }
+
+    public void setTipoContacto(TipoContacto tipoContacto) {
+        this.tipoContacto = tipoContacto;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + ", Telefono: " + telefono + " ";
+    }
+
+}
