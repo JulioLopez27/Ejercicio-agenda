@@ -25,7 +25,7 @@ public class TipoContacto {
 
     @Override
     public String toString() {
-        return "Tipo de contacto: " + nombre;
+        return nombre;
     }
 
    
