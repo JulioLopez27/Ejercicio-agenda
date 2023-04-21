@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-
 package interfazSwing;
 
 import dominio.Usuario;
@@ -15,7 +14,6 @@ import servicios.Fachada;
  */
 public class VentanaLogin extends javax.swing.JDialog {
 
-    /** Creates new form VentanaLogin2 */
     public VentanaLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -97,18 +95,18 @@ public class VentanaLogin extends javax.swing.JDialog {
         login();
     }//GEN-LAST:event_btnLoginActionPerformed
 
-     private void login() {
+    private void login() {
         String username = inputUsername.getText();
         String password = new String(inputPassword.getPassword());
 
         Usuario user = Fachada.getInstancia().loginUsuario(username, password);
         if (user != null) {
             dispose();
-            new CrearContacto(null,false,user).setVisible(true);
-           
+            new CrearContacto(null, false, user).setVisible(true);
+
         } else {
             JOptionPane.showMessageDialog(this, "Credenciales no validas");
-            System.out.println("no hay usuario");
+
         }
 
     }
