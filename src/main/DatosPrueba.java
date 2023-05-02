@@ -19,23 +19,25 @@ public class DatosPrueba {
         Fachada.getInstancia().agregarTipoContacto(familiar);
 //
 ////creacion de contactos
-//        Contacto con1 = new Contacto(particular, "Contacto1", "12345678");
-//        Contacto con2 = new Contacto(familiar, "Contacto2", "24681012");
-//        Contacto con3 = new Contacto(laboral, "Contacto3", "1357911");
-//
-//        Fachada.getInstancia().agregarContacto(con1);
-//        Fachada.getInstancia().agregarContacto(con2);
-//        Fachada.getInstancia().agregarContacto(con3);
-      
+        Contacto con1 = new Contacto(particular, "Contacto1", "12345678");
+        Contacto con2 = new Contacto(familiar, "Contacto2", "24681012");
+        Contacto con3 = new Contacto(laboral, "Contacto3", "1357911");
+
 //creacion agenda
         Agenda ag1 = new Agenda();
         Agenda ag2 = new Agenda();
-        Agenda ag3=new Agenda();
 
+        //Agrego contacto a la agenda
+        ag1.agregarContactoDatosPrueba(con1);
+        ag1.agregarContactoDatosPrueba(con2);
+        ag2.agregarContactoDatosPrueba(con3);
+        
 //creacion usuario
         Usuario user1 = new Usuario("user1", "user1", ag1);
         Usuario user2 = new Usuario("user2", "user2", ag2);
+        
         Fachada.getInstancia().agregarUsuario(user1);
         Fachada.getInstancia().agregarUsuario(user2);
+
     }
 }
