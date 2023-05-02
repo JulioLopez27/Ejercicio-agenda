@@ -33,7 +33,7 @@ public class DatosPrueba {
         ag2.agregarContactoDatosPrueba(con3);
         
 //creacion usuario
-        Usuario user1 = new Usuario("user1", "user1", ag1);
+        Usuario user1 = new Usuario("julio", "julio", ag1);
         Usuario user2 = new Usuario("user2", "user2", ag2);
         
         Fachada.getInstancia().agregarUsuario(user1);
