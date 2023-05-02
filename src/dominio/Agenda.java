@@ -31,4 +31,7 @@ public class Agenda {
         return false;
     }
 
+    public void agregarContactoDatosPrueba(Contacto c) {
+        contactos.add(c);
+    }
 }
