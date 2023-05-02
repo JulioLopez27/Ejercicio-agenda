@@ -3,6 +3,7 @@ package main;
 import dominio.Usuario;
 import interfazConsola.CrearContactoConsola;
 import interfazConsola.LoginConsola;
+import interfazSwing.IuEntrada;
 import interfazSwing.VentanaLogin;
 import utilidades.Consola;
 
@@ -22,8 +23,8 @@ public class AgendaConsola {
 //            contactoConsola.ejecutar();
 //        }
 //---------Logica para la interfaz con swing
-        VentanaLogin login = new VentanaLogin(null,false);
-        login.setVisible(true);
+        IuEntrada system = new IuEntrada();
+        system.setVisible(true);
 
     }
 
