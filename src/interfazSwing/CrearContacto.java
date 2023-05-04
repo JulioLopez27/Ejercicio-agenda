@@ -204,7 +204,7 @@ public class CrearContacto extends javax.swing.JDialog {
         ArrayList<Contacto> contactos = usuario.getAgenda().obtenerContactos(cadena);
         ArrayList<String> cadenaContactos = new ArrayList<>();
 
-        if (contactos.size() == 0) {
+        if (contactos.isEmpty()) {
             String msg = "No tiene contactos en la agenda";
             cadenaContactos.add(msg);
         } else {
@@ -226,7 +226,7 @@ public class CrearContacto extends javax.swing.JDialog {
     private void cargarAgenda() {
         ArrayList<Contacto> contactos = usuario.getAgenda().getContactos();
         ArrayList<String> StringContactos = new ArrayList<>();
-        if (contactos.size()==0) {
+        if (contactos.isEmpty()) {
             String msg="No tiene contactos en la agendam";
             StringContactos.add(msg);
         } else {
