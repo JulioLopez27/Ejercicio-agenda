@@ -31,11 +31,11 @@ public class DatosPrueba {
         ag1.agregarContactoDatosPrueba(con1);
         ag1.agregarContactoDatosPrueba(con2);
         ag2.agregarContactoDatosPrueba(con3);
-        
+
 //creacion usuario
         Usuario user1 = new Usuario("julio", "julio", ag1);
         Usuario user2 = new Usuario("user2", "user2", ag2);
-        
+
         Fachada.getInstancia().agregarUsuario(user1);
         Fachada.getInstancia().agregarUsuario(user2);
 
