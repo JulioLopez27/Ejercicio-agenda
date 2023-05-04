@@ -192,8 +192,7 @@ public class CrearContacto extends javax.swing.JDialog {
         String nombre = inputNombre.getText();
         String numero = inputNumero.getText();
         TipoContacto tc = (TipoContacto) comboBoxTiposContactos.getSelectedItem();
-        Contacto nuevoContacto = new Contacto(tc, nombre, numero);
-        if (usuario.getAgenda().agregarContacto(nuevoContacto)) {
+        if (usuario.getAgenda().agregarContacto(tc, nombre, numero)) {
             cargarAgenda();
             limpiarInputs();
         } else {
@@ -201,20 +200,19 @@ public class CrearContacto extends javax.swing.JDialog {
         }
     }
 
-    private ArrayList<Contacto> buscarContactos(String cadena) {
-        ArrayList<Contacto> contactos = usuario.getAgenda().getContactos();
+    private ArrayList<String> buscarContactos(String cadena) {
+        ArrayList<Contacto> contactos = usuario.getAgenda().obtenerContactos(cadena);
+        ArrayList<String> cadenaContactos = new ArrayList<>();
 
-        if (cadena.isEmpty()) {
-            return contactos;
+        if (contactos.size() == 0) {
+            String msg = "No tiene contactos en la agenda";
+            cadenaContactos.add(msg);
         } else {
-            ArrayList<Contacto> test = new ArrayList<>();
             for (Contacto c : contactos) {
-                if (c.getNombre().contains(cadena) || c.getTelefono().contains(cadena)) {
-                    test.add(c);
-                }
+                cadenaContactos.add(c.getNombre());
             }
-            return test;
         }
+        return cadenaContactos;
     }
 
     private void cargarTiposContactos() {
@@ -226,7 +224,17 @@ public class CrearContacto extends javax.swing.JDialog {
     }
 
     private void cargarAgenda() {
-        listaContactos.setListData(usuario.getAgenda().getContactos().toArray());
+        ArrayList<Contacto> contactos = usuario.getAgenda().getContactos();
+        ArrayList<String> StringContactos = new ArrayList<>();
+        if (contactos.size()==0) {
+            String msg="No tiene contactos en la agendam";
+            StringContactos.add(msg);
+        } else {
+            for (Contacto contacto : contactos) {
+                StringContactos.add(contacto.getNombre());
+            }
+        }
+        listaContactos.setListData(StringContactos.toArray());
     }
 
     private void limpiarInputs() {
@@ -234,7 +242,6 @@ public class CrearContacto extends javax.swing.JDialog {
         inputNombre.requestFocus();
         inputNumero.setText("");
         comboBoxTiposContactos.setSelectedIndex(0);
-
     }
 
 
