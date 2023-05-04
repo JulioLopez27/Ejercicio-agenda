@@ -47,9 +47,9 @@ public class CrearContactoConsola {
     private void crearContacto() {
         Consola.titulo("Registrar contacto");
 
-        Contacto contacto = new Contacto();
-        contacto.setNombre(Consola.leer("Nombre: "));
-        contacto.setTelefono(Consola.leer("Telefono: "));
+       
+        String nombre=Consola.leer("Nombre: ");
+        String telefono=Consola.leer("Telefono: ");
 
         //array con las opciones de los tipos de contactos
         ArrayList<TipoContacto> tiposContactos = Fachada.getInstancia().getTiposContactos();
@@ -57,14 +57,14 @@ public class CrearContactoConsola {
         int tipoContactoSeleccionado = Consola.menu(tiposContactos);
         //obtengo cual es el valor respecto al indice
         TipoContacto tc = tiposContactos.get(tipoContactoSeleccionado);
-        contacto.setTipoContacto(tc);
+        
 
         String confirmar = Consola.leer("Desea registrar el nuevo contacto?(s/n) ");
         if (!"s".equals(confirmar)) {
             return;
         }
 
-        if (agenda.agregarContacto(contacto)) {
+        if (agenda.agregarContacto(tc,nombre,telefono)) {
             Consola.println("Se agrego correctamente el contacto");
             mostrarContactos();
         } else {
