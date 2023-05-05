@@ -217,6 +217,8 @@ public class CrearContacto extends javax.swing.JDialog {
             detallesContacto.setText("Tipo contacto: " + contacto.getTipoContacto() + "\n"
                     + "Nombre: " + contacto.getNombre() + "\n"
                     + "Telefono: " + contacto.getTelefono());
+        }else{
+            detallesContacto.setText("No posee detalles, contacte al 0800");
         }
     }
 
