@@ -50,7 +50,7 @@ public class CrearContacto extends javax.swing.JDialog {
         txtBuscar = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        detallesContacto = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -65,18 +65,6 @@ public class CrearContacto extends javax.swing.JDialog {
 
         jLabel3.setText("Tipo de Contacto");
 
-        inputNumero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputNumeroActionPerformed(evt);
-            }
-        });
-
-        inputNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputNombreActionPerformed(evt);
-            }
-        });
-
         btnCrearContacto.setText("Crear contacto");
         btnCrearContacto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +72,11 @@ public class CrearContacto extends javax.swing.JDialog {
             }
         });
 
+        listaContactos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                listaContactosMousePressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(listaContactos);
 
         btnBuscar.setText("Buscar");
@@ -101,7 +94,13 @@ public class CrearContacto extends javax.swing.JDialog {
 
         jLabel4.setText("Buscar contacto: ");
 
-        jScrollPane1.setViewportView(jList1);
+        detallesContacto.setColumns(20);
+        detallesContacto.setRows(5);
+        detallesContacto.setCaretColor(new java.awt.Color(70, 70, 70));
+        detallesContacto.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        detallesContacto.setEnabled(false);
+        jScrollPane1.setViewportView(detallesContacto);
+        detallesContacto.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,16 +119,17 @@ public class CrearContacto extends javax.swing.JDialog {
                     .addComponent(comboBoxTiposContactos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(inputNombre))
                 .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,9 +155,9 @@ public class CrearContacto extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(btnCrearContacto))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -166,14 +166,6 @@ public class CrearContacto extends javax.swing.JDialog {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         new VentanaLogin(null, false).setVisible(true);
     }//GEN-LAST:event_formWindowClosing
-
-    private void inputNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputNumeroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputNumeroActionPerformed
-
-    private void inputNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputNombreActionPerformed
 
     private void btnCrearContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearContactoActionPerformed
         crearContacto();
@@ -184,9 +176,12 @@ public class CrearContacto extends javax.swing.JDialog {
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
         listaContactos.setListData(buscarContactos(txtBuscar.getText()).toArray());
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void listaContactosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaContactosMousePressed
+       mostrarDetallesContacto();
+    }//GEN-LAST:event_listaContactosMousePressed
 
     private void crearContacto() {
         String nombre = inputNombre.getText();
@@ -215,6 +210,16 @@ public class CrearContacto extends javax.swing.JDialog {
         return cadenaContactos;
     }
 
+    private void mostrarDetallesContacto() {
+        String nombreContacto = listaContactos.getSelectedValue().toString();
+        Contacto contacto = usuario.getAgenda().contactoSeleccionado(nombreContacto);
+        if (contacto != null) {
+            detallesContacto.setText("Tipo contacto: " + contacto.getTipoContacto() + "\n"
+                    + "Nombre: " + contacto.getNombre() + "\n"
+                    + "Telefono: " + contacto.getTelefono());
+        }
+    }
+
     private void cargarTiposContactos() {
         ArrayList<TipoContacto> tiposContactos = Fachada.getInstancia().getTiposContactos();
         for (TipoContacto tc : tiposContactos) {
@@ -227,7 +232,7 @@ public class CrearContacto extends javax.swing.JDialog {
         ArrayList<Contacto> contactos = usuario.getAgenda().getContactos();
         ArrayList<String> StringContactos = new ArrayList<>();
         if (contactos.isEmpty()) {
-            String msg="No tiene contactos en la agendam";
+            String msg = "No tiene contactos en la agendam";
             StringContactos.add(msg);
         } else {
             for (Contacto contacto : contactos) {
@@ -249,13 +254,13 @@ public class CrearContacto extends javax.swing.JDialog {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCrearContacto;
     private javax.swing.JComboBox comboBoxTiposContactos;
+    private javax.swing.JTextArea detallesContacto;
     private javax.swing.JTextField inputNombre;
     private javax.swing.JTextField inputNumero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList listaContactos;
