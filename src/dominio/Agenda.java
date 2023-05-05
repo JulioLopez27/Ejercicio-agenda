@@ -31,9 +31,12 @@ public class Agenda {
         return false;
     }
 
-    private boolean validar( String nombre, String telefono) {
-       if(nombre==null || nombre.trim().isEmpty() && telefono==null || telefono.trim().isEmpty())return false;
-       else return true;
+    private boolean validar(String nombre, String telefono) {
+        if (nombre == null || nombre.trim().isEmpty() && telefono == null || telefono.trim().isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public void agregarContactoDatosPrueba(Contacto c) {
@@ -66,5 +69,18 @@ public class Agenda {
             }
         }
         return contactosADevolver;
+    }
+
+    public Contacto contactoSeleccionado(String nombre) {
+        Contacto c = null;
+        if (!nombre.isEmpty()) {
+            for (Contacto contacto : this.getContactos()) {
+                if (contacto.getNombre().equals(nombre)) {
+                    c = contacto;
+                }
+            }
+        }
+
+        return c;
     }
 }
