@@ -26,6 +26,7 @@ public class CrearContacto extends javax.swing.JDialog {
         usuario = user;
         cargarTiposContactos();
         cargarAgenda();
+        cargarInfoUsuario();
     }
 
     /**
@@ -180,7 +181,7 @@ public class CrearContacto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void listaContactosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaContactosMousePressed
-       mostrarDetallesContacto();
+        mostrarDetallesContacto();
     }//GEN-LAST:event_listaContactosMousePressed
 
     private void crearContacto() {
@@ -189,6 +190,7 @@ public class CrearContacto extends javax.swing.JDialog {
         TipoContacto tc = (TipoContacto) comboBoxTiposContactos.getSelectedItem();
         if (usuario.getAgenda().agregarContacto(tc, nombre, numero)) {
             cargarAgenda();
+            cargarInfoUsuario();
             limpiarInputs();
         } else {
             JOptionPane.showMessageDialog(this, "No se pudo crear el contacto!");
@@ -217,9 +219,14 @@ public class CrearContacto extends javax.swing.JDialog {
             detallesContacto.setText("Tipo contacto: " + contacto.getTipoContacto() + "\n"
                     + "Nombre: " + contacto.getNombre() + "\n"
                     + "Telefono: " + contacto.getTelefono());
-        }else{
+        } else {
             detallesContacto.setText("No posee detalles, contacte al 0800");
         }
+    }
+
+    private void cargarInfoUsuario() {
+        setTitle("Bienvenido a su agenda " + usuario.getNombre() + ", cantidad de contactos: " + usuario.getAgenda().getCantidadContactos());
+
     }
 
     private void cargarTiposContactos() {
