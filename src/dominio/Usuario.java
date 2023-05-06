@@ -23,6 +23,10 @@ public class Usuario {
     public Usuario() {
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
     public void setAgenda(Agenda agenda) {
         this.agenda = agenda;
     }
