@@ -204,12 +204,18 @@ public class CrearContacto extends javax.swing.JDialog {
         if (contactos.isEmpty()) {
             String msg = "No se encontro el contacto";
             cadenaContactos.add(msg);
+            limpiarDetallesContacto();
         } else {
             for (Contacto c : contactos) {
                 cadenaContactos.add(c.getNombre());
+                limpiarDetallesContacto();
             }
         }
         return cadenaContactos;
+    }
+
+    private void limpiarDetallesContacto() {
+        detallesContacto.setText("");
     }
 
     private void mostrarDetallesContacto() {
