@@ -6,6 +6,7 @@ package servicios;
 
 import dominio.Contacto;
 import dominio.TipoContacto;
+import dominio.TipoTelefono;
 import dominio.Usuario;
 import java.util.ArrayList;
 
@@ -51,6 +52,14 @@ public class Fachada {
   
     public boolean agregarTipoContacto(TipoContacto tc) {
         return servicioAgenda.agregar(tc);
+    }
+
+    public boolean agregar(TipoTelefono tt) {
+        return servicioAgenda.agregar(tt);
+    }
+
+    public ArrayList<TipoTelefono> getTipoTelefonos() {
+        return servicioAgenda.getTipoTelefonos();
     }
 
   
