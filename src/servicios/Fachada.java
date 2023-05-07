@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Fachada {
 
     ServicioUsuarios servicioUsuarios = new ServicioUsuarios();
-    ServicioTipoContacto servicioTipoContactos = new ServicioTipoContacto();
+    ServicioAgenda servicioAgenda = new ServicioAgenda();
 
     private static Fachada instancia = null;
 
@@ -45,12 +45,12 @@ public class Fachada {
     //-------------------------------
     //Logica TipoContactos ------
     public ArrayList<TipoContacto> getTiposContactos() {
-        return servicioTipoContactos.getTipoContactos();
+        return servicioAgenda.getTipoContactos();
     }
 
   
     public boolean agregarTipoContacto(TipoContacto tc) {
-        return servicioTipoContactos.agregar(tc);
+        return servicioAgenda.agregar(tc);
     }
 
   
