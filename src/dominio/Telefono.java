@@ -21,9 +21,13 @@ public class Telefono {
         return tipoTelefono;
     }
 
-    public boolean validar() {
+    public boolean esValido() {
         //se valida en secuencia, para no tener un nullPointerException en caso de poner
         // la validacion de numero en ultimo lugar, por ej.
         return numero != null && tipoTelefono != null && tipoTelefono.esValido(numero);
+    }
+
+    public boolean contiene(String criterio) {
+        return numero.contains(criterio) || tipoTelefono.getNombre().contains(criterio);
     }
 }
