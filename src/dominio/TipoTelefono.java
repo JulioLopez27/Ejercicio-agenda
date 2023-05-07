@@ -15,6 +15,10 @@ public abstract class TipoTelefono {
         this.nombre = nombre;
     }
 public abstract boolean esValido(String numero);
+
+    public String getNombre() {
+        return nombre;
+    }
     
     public boolean esNumerico(String texto){
         //trata de transformar el string a valor numerico
