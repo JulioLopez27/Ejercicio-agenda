@@ -10,9 +10,9 @@ package dominio;
  */
 public class Usuario {
 
-    String nombre;
-    String password;
-    Agenda agenda;
+    private String nombre;
+    private String password;
+    private Agenda agenda;
 
     public Usuario(String nombre, String password, Agenda agenda) {
         this.nombre = nombre;
@@ -45,7 +45,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return  nombre ;
+        return nombre;
     }
 
     public boolean validarCredenciales(String username, String password) {
@@ -70,5 +70,4 @@ public class Usuario {
         return compararUsuarios(user.nombre, user.password);
     }
 
-  
 }
