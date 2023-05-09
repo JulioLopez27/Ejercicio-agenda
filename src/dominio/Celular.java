@@ -20,7 +20,7 @@ public class Celular extends TipoTelefono {
 
     @Override
     public boolean esValido(String numero) {
-        return numero.length() == 9 && esNumerico(numero) && numero.substring(0, 1).equals("09");
+        return numero.length() == 9 && esNumerico(numero) && numero.substring(0, 2).equals("09");
     }
 
 }
