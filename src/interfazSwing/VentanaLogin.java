@@ -102,7 +102,7 @@ public class VentanaLogin extends javax.swing.JDialog {
         Usuario user = Fachada.getInstancia().loginUsuario(username, password);
         if (user != null) {
             dispose();
-            new CrearContacto(null, false, user).setVisible(true);
+            new VentanaAgenda(null, false, user).setVisible(true);
 
         } else {
             JOptionPane.showMessageDialog(this, "Credenciales no validas");
