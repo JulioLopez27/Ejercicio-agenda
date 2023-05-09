@@ -10,7 +10,7 @@ package dominio;
  */
 public class TipoContacto {
 
-    String nombre;
+    private String nombre;
 
     public TipoContacto(String nombre) {
         this.nombre = nombre;
