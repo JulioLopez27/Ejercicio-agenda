@@ -1,8 +1,13 @@
 package main;
 
 import dominio.Agenda;
+import dominio.Celular;
 import dominio.Contacto;
+import dominio.Fijo;
+import dominio.Internacional;
+import dominio.Telefono;
 import dominio.TipoContacto;
+import dominio.TipoTelefono;
 import dominio.Usuario;
 import servicios.Fachada;
 
@@ -17,11 +22,21 @@ public class DatosPrueba {
         Fachada.getInstancia().agregarTipoContacto(particular);
         Fachada.getInstancia().agregarTipoContacto(laboral);
         Fachada.getInstancia().agregarTipoContacto(familiar);
-//
+
+        TipoTelefono tt1 = new Celular();
+        TipoTelefono tt2 = new Fijo();
+        TipoTelefono tt3 = new Internacional();
+        Fachada.getInstancia().agregar(tt1);
+        Fachada.getInstancia().agregar(tt2);
+        Fachada.getInstancia().agregar(tt3);
+
+        Telefono tel1 = new Telefono("12345678", tt1);
+        Telefono tel2 = new Telefono("46228867", tt2);
+        Telefono tel3= new Telefono("00548255855",tt3);
 ////creacion de contactos
-        Contacto con1 = new Contacto(particular, "Contacto1", "12345678");
-        Contacto con2 = new Contacto(familiar, "Contacto2", "24681012");
-        Contacto con3 = new Contacto(laboral, "Contacto3", "1357911");
+        Contacto con1 = new Contacto(particular, "Contacto1", tel1);
+        Contacto con2 = new Contacto(familiar, "Contacto2", tel2);
+        Contacto con3 = new Contacto(laboral, "Contacto3", tel3);
 
 //creacion agenda
         Agenda ag1 = new Agenda();
