@@ -23,48 +23,42 @@ public class Agenda {
         return contactos.size();
     }
 
-    public boolean agregarContacto(TipoContacto tc, String nombre, String telefono) {
-        if (validar(nombre, telefono)) {
-            contactos.add(new Contacto(tc, nombre, telefono));
+    public boolean agregarContacto(TipoContacto tc, String nombre, Telefono telefono) {
+        Contacto contacto = new Contacto(tc, nombre, telefono);
+        if (contacto.validar()) {
+            contactos.add(contacto);
             return true;
         }
         return false;
     }
 
-    private boolean validar(String nombre, String telefono) {
-        if (nombre == null || nombre.trim().isEmpty() && telefono == null || telefono.trim().isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
+    
     public void agregarContactoDatosPrueba(Contacto c) {
         contactos.add(c);
     }
 
     //pre:Cadena vacia muestro todos los contactos del usuario
     public ArrayList<Contacto> obtenerContactos(String cadena) {
+        //verifico si la cadena de busqueda es vacia
         return cadena.isEmpty()
                 ? devolverTodosLosContactos()
                 : contactosContienenCadena(cadena);
     }
 
     private ArrayList<Contacto> devolverTodosLosContactos() {
-        ArrayList<Contacto> contactos = new ArrayList<>();
-        if (this.getContactos().size() == 0) {
-            return contactos;
+        ArrayList<Contacto> contactosADevolver = new ArrayList<>();
+        if (!this.getContactos().isEmpty()) {
+            for (Contacto contacto : this.getContactos()) {
+                contactosADevolver.add(contacto);
+            }
         }
-        for (Contacto contacto : this.getContactos()) {
-            contactos.add(contacto);
-        }
-        return contactos;
+        return contactosADevolver;
     }
 
     private ArrayList<Contacto> contactosContienenCadena(String cadena) {
         ArrayList<Contacto> contactosADevolver = new ArrayList<>();
         for (Contacto c : this.getContactos()) {
-            if (c.getNombre().contains(cadena) || c.getTelefono().contains(cadena)) {
+            if (c.contiene(cadena)) {
                 contactosADevolver.add(c);
             }
         }
