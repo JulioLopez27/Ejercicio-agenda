@@ -8,7 +8,7 @@ import dominio.Internacional;
 import dominio.Telefono;
 import dominio.TipoContacto;
 import dominio.TipoTelefono;
-import dominio.Usuario;
+import dominio.UsuarioAgenda;
 import servicios.Fachada;
 
 public class DatosPrueba {
@@ -48,8 +48,8 @@ public class DatosPrueba {
         ag2.agregarContactoDatosPrueba(con3);
 
 //creacion usuario
-        Usuario user1 = new Usuario("julio", "julio", ag1);
-        Usuario user2 = new Usuario("user2", "user2", ag2);
+        UsuarioAgenda user1 = new UsuarioAgenda("julio", "julio", ag1);
+        UsuarioAgenda user2 = new UsuarioAgenda("user2", "user2", ag2);
 
         Fachada.getInstancia().agregarUsuario(user1);
         Fachada.getInstancia().agregarUsuario(user2);

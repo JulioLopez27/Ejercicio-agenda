@@ -4,7 +4,7 @@
  */
 package servicios;
 
-import dominio.Usuario;
+import dominio.UsuarioAgenda;
 import java.util.ArrayList;
 
 /**
@@ -13,11 +13,11 @@ import java.util.ArrayList;
  */
 public class ServicioUsuarios {
 
-    private ArrayList<Usuario> usuarios = new ArrayList<>();
+    private ArrayList<UsuarioAgenda> usuarios = new ArrayList<>();
 
-    public Usuario login(String username, String password) {
-        Usuario user = null;
-        for (Usuario usuario : usuarios) {
+    public UsuarioAgenda login(String username, String password) {
+        UsuarioAgenda user = null;
+        for (UsuarioAgenda usuario : usuarios) {
 
             if (usuario.compararUsuarios(username, password)) {
                 user = usuario;
@@ -27,11 +27,11 @@ public class ServicioUsuarios {
         return user;
     }
 
-    private ArrayList<Usuario> getUsuarios() {
+    private ArrayList<UsuarioAgenda> getUsuarios() {
         return usuarios;
     }
 
-    public boolean agregar(Usuario user) {
+    public boolean agregar(UsuarioAgenda user) {
 
         if (user != null && !existeUsuario(user)) {
             usuarios.add(user);
@@ -41,8 +41,8 @@ public class ServicioUsuarios {
         return false;
     }
 
-    private boolean existeUsuario(Usuario user) {
-        for (Usuario usuario : usuarios) {
+    private boolean existeUsuario(UsuarioAgenda user) {
+        for (UsuarioAgenda usuario : usuarios) {
             if (usuario.existeUsuario(user)) {
                 return true;
             }

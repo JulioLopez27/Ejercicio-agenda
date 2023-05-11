@@ -7,7 +7,7 @@ package servicios;
 import dominio.Contacto;
 import dominio.TipoContacto;
 import dominio.TipoTelefono;
-import dominio.Usuario;
+import dominio.UsuarioAgenda;
 import java.util.ArrayList;
 
 /**
@@ -32,11 +32,11 @@ public class Fachada {
     }
 
     //Logica Usuarios -----------------
-    public Usuario loginUsuario(String username, String password) {
+    public UsuarioAgenda loginUsuario(String username, String password) {
         return servicioUsuarios.login(username, password);
     }
 
-    public boolean agregarUsuario(Usuario user) {
+    public boolean agregarUsuario(UsuarioAgenda user) {
         return servicioUsuarios.agregar(user);
     }
 

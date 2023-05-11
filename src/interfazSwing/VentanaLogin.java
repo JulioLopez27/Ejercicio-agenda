@@ -4,7 +4,7 @@
  */
 package interfazSwing;
 
-import dominio.Usuario;
+import dominio.UsuarioAgenda;
 import javax.swing.JOptionPane;
 import servicios.Fachada;
 
@@ -99,7 +99,7 @@ public class VentanaLogin extends javax.swing.JDialog {
         String username = inputUsername.getText();
         String password = new String(inputPassword.getPassword());
 
-        Usuario user = Fachada.getInstancia().loginUsuario(username, password);
+        UsuarioAgenda user = Fachada.getInstancia().loginUsuario(username, password);
         if (user != null) {
             dispose();
             new VentanaAgenda(null, false, user).setVisible(true);

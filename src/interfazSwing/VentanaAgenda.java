@@ -8,7 +8,7 @@ import dominio.Contacto;
 import dominio.Telefono;
 import dominio.TipoContacto;
 import dominio.TipoTelefono;
-import dominio.Usuario;
+import dominio.UsuarioAgenda;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import servicios.Fachada;
@@ -19,9 +19,9 @@ import servicios.Fachada;
  */
 public class VentanaAgenda extends javax.swing.JDialog {
 
-    private Usuario usuario;
+    private UsuarioAgenda usuario;
 
-    public VentanaAgenda(java.awt.Frame parent, boolean modal, Usuario user) {
+    public VentanaAgenda(java.awt.Frame parent, boolean modal, UsuarioAgenda user) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
