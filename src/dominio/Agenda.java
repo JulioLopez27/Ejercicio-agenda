@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class Agenda {
 
-    private Usuario usuario;
+    private UsuarioAgenda usuarioAgenda;
 
     public Agenda() {
     }
 
-    public Agenda(Usuario usuario) {
-        this.usuario = usuario;
+    public Agenda(UsuarioAgenda usuario) {
+        this.usuarioAgenda = usuario;
     }
 
     ArrayList<Contacto> contactos = new ArrayList<>();
