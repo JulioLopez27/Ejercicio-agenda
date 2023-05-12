@@ -8,23 +8,11 @@ package dominio;
  *
  * @author Julio Cesar
  */
-public class UsuarioAgenda {
+public class UsuarioAgenda extends UsuarioGenerico {
 
-    private String nombre;
-    private String password;
     private Agenda agenda;
 
-    public UsuarioAgenda(String nombre, String password, Agenda agenda) {
-        this.nombre = nombre;
-        this.password = password;
-        this.agenda = agenda;
-    }
-
     public UsuarioAgenda() {
-    }
-
-    public String getNombre() {
-        return nombre;
     }
 
     public void setAgenda(Agenda agenda) {
@@ -35,39 +23,5 @@ public class UsuarioAgenda {
         return agenda;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return nombre;
-    }
-
-    public boolean validarCredenciales(String username, String password) {
-
-        if (username == null || password == null || username.isBlank() || password.isBlank()) {
-            return false;
-        }
-
-        int largoMaximoPassword = 20;
-        if (password.length() > largoMaximoPassword) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public boolean compararUsuarios(String username, String password) {
-        return this.nombre.equals(username) && this.password.equals(password);
-    }
-
-    public boolean existeUsuario(UsuarioAgenda user) {
-        return compararUsuarios(user.nombre, user.password);
-    }
-
+   
 }
