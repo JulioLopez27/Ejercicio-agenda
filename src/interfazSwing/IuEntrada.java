@@ -30,20 +30,29 @@ public class IuEntrada extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jLoginUsuario = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bienvenido al sistema de agendas");
 
         jMenu1.setText("Usuario");
 
-        jMenuItem1.setText("Login");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jLoginUsuario.setText("Login usuario Agenda");
+        jLoginUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jLoginUsuarioActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(jLoginUsuario);
+
+        jMenuItem2.setText("Login usuario Administrado");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
 
@@ -63,20 +72,27 @@ public class IuEntrada extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        iniciarLogin();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void jLoginUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginUsuarioActionPerformed
+        this.loginUsuarioAgenda();
+    }//GEN-LAST:event_jLoginUsuarioActionPerformed
 
-    public void iniciarLogin() {
-        VentanaLogin login = new VentanaLogin(null, false);
-        login.setVisible(true);
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        this.loginUsuarioAdministrador();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void loginUsuarioAgenda() {
+        new VentanaLoginUsuarioAgenda(this, false).setVisible(true);
+
+    }
+    private void loginUsuarioAdministrador(){
+        new VentanaLoginUsuarioAdministrador(this, false).setVisible(true);
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem jLoginUsuario;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }
