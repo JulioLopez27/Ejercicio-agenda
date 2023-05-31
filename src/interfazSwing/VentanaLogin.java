@@ -4,10 +4,10 @@
  */
 package interfazSwing;
 
-import dominio.UsuarioAgenda;
+
 import dominio.UsuarioGenerico;
 import javax.swing.JOptionPane;
-import servicios.Fachada;
+
 
 /**
  *
