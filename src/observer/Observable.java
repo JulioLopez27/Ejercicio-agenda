@@ -16,6 +16,7 @@ public class Observable {
     
     public enum Evento{
        LISTA_SESIONES_ACTUALIZADA,
+       AGENDA_ACTUALIZADA,
     }
 
     public Observable() {
