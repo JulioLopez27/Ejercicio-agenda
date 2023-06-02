@@ -8,6 +8,7 @@ import dominio.Internacional;
 import dominio.Telefono;
 import dominio.TipoContacto;
 import dominio.TipoTelefono;
+import dominio.UsuarioAdministrador;
 import dominio.UsuarioAgenda;
 import servicios.Fachada;
 
@@ -19,9 +20,9 @@ public class DatosPrueba {
         TipoContacto laboral = new TipoContacto("Laboral");
         TipoContacto familiar = new TipoContacto("Familiar");
 
-        Fachada.getInstancia().agregarTipoContacto(particular);
-        Fachada.getInstancia().agregarTipoContacto(laboral);
-        Fachada.getInstancia().agregarTipoContacto(familiar);
+        Fachada.getInstancia().agregar(particular);
+        Fachada.getInstancia().agregar(laboral);
+        Fachada.getInstancia().agregar(familiar);
 
         TipoTelefono tt1 = new Celular();
         TipoTelefono tt2 = new Fijo();
@@ -32,7 +33,7 @@ public class DatosPrueba {
 
         Telefono tel1 = new Telefono("12345678", tt1);
         Telefono tel2 = new Telefono("46228867", tt2);
-        Telefono tel3= new Telefono("00548255855",tt3);
+        Telefono tel3 = new Telefono("00548255855", tt3);
 ////creacion de contactos
         Contacto con1 = new Contacto(particular, "Contacto1", tel1);
         Contacto con2 = new Contacto(familiar, "Contacto2", tel2);
@@ -48,11 +49,22 @@ public class DatosPrueba {
         ag2.agregarContactoDatosPrueba(con3);
 
 //creacion usuario
-        UsuarioAgenda user1 = new UsuarioAgenda("julio", "julio", ag1);
-        UsuarioAgenda user2 = new UsuarioAgenda("user2", "user2", ag2);
+        UsuarioAgenda user1 = new UsuarioAgenda("b","b",ag1);
+//        user1.setNombre("julio");
+//        user1.setPassword("123456");
+//        user1.setAgenda(ag1);
 
-        Fachada.getInstancia().agregarUsuario(user1);
-        Fachada.getInstancia().agregarUsuario(user2);
+        UsuarioAgenda user2 = new UsuarioAgenda();
+        user2.setNombre("a");
+        user2.setPassword("a");
+        user2.setAgenda(ag2);
 
+        Fachada.getInstancia().agregar(user1);
+        Fachada.getInstancia().agregar(user2);
+
+        UsuarioAdministrador admin1 = new UsuarioAdministrador();
+        admin1.setNombre("admin");
+        admin1.setPassword("admin");
+        Fachada.getInstancia().agregrar(admin1);
     }
 }
