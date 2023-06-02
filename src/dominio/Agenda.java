@@ -1,8 +1,9 @@
 package dominio;
 
 import java.util.ArrayList;
+import observer.Observable;
 
-public class Agenda {
+public class Agenda extends Observable{
 
     private UsuarioAgenda usuarioAgenda;
 
