@@ -4,11 +4,13 @@
  */
 package dominio;
 
+import observer.Observable;
+
 /**
  *
  * @author Julio Cesar
  */
-public class Contacto {
+public class Contacto extends Observable{
 
     private TipoContacto tipoContacto;
     private String nombre;
