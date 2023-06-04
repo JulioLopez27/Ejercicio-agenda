@@ -39,8 +39,8 @@ public class Fachada extends Observable{
        return servicioUsuarios.getSesionesActivas();
      }
     
-    public void cerrar(Sesion sesion){
-        servicioUsuarios.cerrar(sesion);
+    public void cerrar(UsuarioAgenda user){
+        servicioUsuarios.cerarar(user);
     }
     
     //Logica Usuarios -----------------
