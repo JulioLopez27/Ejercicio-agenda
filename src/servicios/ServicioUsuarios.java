@@ -4,11 +4,13 @@
  */
 package servicios;
 
+import dominio.Sesion;
 import dominio.UsuarioAdministrador;
 import dominio.UsuarioAgenda;
 import dominio.UsuarioGenerico;
 import java.util.ArrayList;
 import java.util.List;
+import observer.Observable;
 
 /**
  *
@@ -18,22 +20,26 @@ public class ServicioUsuarios {
 
     private List<UsuarioAgenda> usuariosAgenda;
     private List<UsuarioAdministrador> usuariosAdministrador;
+    private List<Sesion> sesiones;
 
     public ServicioUsuarios() {
         usuariosAgenda = new ArrayList<>();
         usuariosAdministrador = new ArrayList<>();
+        sesiones = new ArrayList<>();
     }
 
-    public UsuarioAgenda loginAgenda(String usuario, String password) {
-        return (UsuarioAgenda)this.loginUsuario(usuario, password, (ArrayList)usuariosAgenda);
+    private void agregar(Sesion sesion) {
+        sesiones.add(sesion);
+        //le aviso a la fachada para que ejecute el notificar
+        Fachada.getInstancia().notificar(Observable.Evento.LISTA_SESIONES_ACTUALIZADA);
     }
 
-    public UsuarioAdministrador loginAdministrador(String usuario, String password) {
-        return (UsuarioAdministrador)this.loginUsuario(usuario, password, (ArrayList)usuariosAdministrador);
+    public void cerrar(Sesion sesion) {
+        sesiones.remove(sesion);
+        Fachada.getInstancia().notificar(Observable.Evento.LISTA_SESIONES_ACTUALIZADA);
     }
 
     public boolean agregar(UsuarioAgenda user) {
-
         if (user != null) {
             usuariosAgenda.add(user);
             return true;
@@ -49,6 +55,20 @@ public class ServicioUsuarios {
         return false;
     }
 
+    public Sesion loginUsuarioAgenda(String usuario, String password) {
+        UsuarioAgenda usuarioLogueado = (UsuarioAgenda) this.loginUsuario(usuario, password, (ArrayList) usuariosAgenda);
+        if (usuarioLogueado != null) {
+            Sesion sesion = new Sesion(usuarioLogueado);
+            this.agregar(sesion);
+            return sesion;
+        }
+        return null;
+    }
+
+    public UsuarioAdministrador loginUsuarioAdministrador(String usuario, String password) {
+        return (UsuarioAdministrador) this.loginUsuario(usuario, password, (ArrayList) usuariosAdministrador);
+    }
+
     private UsuarioGenerico loginUsuario(String usuario, String password, List<UsuarioGenerico> listaUsuarios) {
         for (UsuarioGenerico u : listaUsuarios) {
             if (u.getNombre().equals(usuario) && u.esPasswordValida(password)) {
@@ -58,14 +78,7 @@ public class ServicioUsuarios {
         return null;
     }
 
-    //TODO: reactivar codigo de ser necesario verificar si ya existe un usuairo con 
-    //datos iguales
-//    private boolean existeUsuario(UsuarioAgenda user) {
-//        for (UsuarioAgenda usuario : usuarios) {
-//            if (usuario.existeUsuario(user)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    public List<Sesion> getSesionesActivas() {
+        return sesiones;
+    }
 }
