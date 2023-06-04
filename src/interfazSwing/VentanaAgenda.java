@@ -11,13 +11,15 @@ import dominio.TipoTelefono;
 import dominio.UsuarioAgenda;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import observer.Observable;
+import observer.Observer;
 import servicios.Fachada;
 
 /**
  *
  * @author Julio Cesar
  */
-public class VentanaAgenda extends javax.swing.JDialog {
+public class VentanaAgenda extends javax.swing.JDialog implements Observer {
 
     private UsuarioAgenda usuario;
 
@@ -26,7 +28,9 @@ public class VentanaAgenda extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         usuario = user;
-        inicializar();
+        //TODO: implementar renderes para comboBoxs
+        cargarInformacionDelUsuarioEnAgenda();
+        this.usuario.getAgenda().suscribir(this);
     }
 
     /**
@@ -174,22 +178,23 @@ public class VentanaAgenda extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        new VentanaLogin(null, false).setVisible(true);
+        this.usuario.getAgenda().desuscribir(this);
+        new IuEntrada();
     }//GEN-LAST:event_formWindowClosing
 
     private void btnCrearContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearContactoActionPerformed
-        crearContacto();
+        this.crearContacto();
     }//GEN-LAST:event_btnCrearContactoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        listaContactos.setListData(buscarContactos(txtBuscar.getText()).toArray());
+      listaContactos.setListData(buscarContactos(txtBuscar.getText()).toArray());
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void listaContactosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaContactosMousePressed
-        mostrarDetallesContacto();
+        this.mostrarDetallesContacto();
     }//GEN-LAST:event_listaContactosMousePressed
 
-    private void inicializar() {
+    private void cargarInformacionDelUsuarioEnAgenda() {
         inicializarComboTiposContactos();
         inicializarComboTiposTelefonos();
         inicializarInformacionUsuario();
@@ -219,7 +224,7 @@ public class VentanaAgenda extends javax.swing.JDialog {
         ArrayList<Contacto> contactos = usuario.getAgenda().getContactos();
         ArrayList<String> StringContactos = new ArrayList<>();
         if (contactos.isEmpty()) {
-            String msg = "No tiene contactos en la agendam";
+            String msg = "No tiene contactos en la agenda";
             StringContactos.add(msg);
         } else {
             for (Contacto contacto : contactos) {
@@ -260,10 +265,6 @@ public class VentanaAgenda extends javax.swing.JDialog {
         return cadenaContactos;
     }
 
-    private void limpiarDetallesContacto() {
-        detallesContacto.setText("");
-    }
-
     private void mostrarDetallesContacto() {
         String nombreContacto = listaContactos.getSelectedValue().toString();
         Contacto contacto = usuario.getAgenda().contactoSeleccionado(nombreContacto);
@@ -273,8 +274,20 @@ public class VentanaAgenda extends javax.swing.JDialog {
                     + "Nombre: " + contacto.getNombre() + "\n"
                     + "Telefono: " + contacto.getTelefono());
         } else {
-            detallesContacto.setText("No posee detalles, contacte al 0800");
+            detallesContacto.setText("Nop");
         }
+    }
+
+    @Override
+    public void notificar(Observable origen, Observable.Evento event) {
+        Observable.Evento e = (Observable.Evento) event;
+        if (e.equals(Observable.Evento.AGENDA_ACTUALIZADA)) {
+           this.cargarInformacionDelUsuarioEnAgenda();
+        }
+    }
+
+    private void limpiarDetallesContacto() {
+        detallesContacto.setText("");
     }
 
     private void limpiarInputs() {
