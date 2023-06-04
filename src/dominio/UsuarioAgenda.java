@@ -12,6 +12,12 @@ public class UsuarioAgenda extends UsuarioGenerico {
 
     private Agenda agenda;
 
+    public UsuarioAgenda(String nombre,String password,Agenda agenda){
+        this.setNombre(nombre);
+        this.setPassword(password);
+        this.agenda=agenda;
+    }
+    
     public UsuarioAgenda() {
     }
 
