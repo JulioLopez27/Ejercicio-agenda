@@ -34,9 +34,14 @@ public class ServicioUsuarios {
         Fachada.getInstancia().notificar(Observable.Evento.LISTA_SESIONES_ACTUALIZADA);
     }
 
-    public void cerrar(Sesion sesion) {
-        sesiones.remove(sesion);
-        Fachada.getInstancia().notificar(Observable.Evento.LISTA_SESIONES_ACTUALIZADA);
+    public void cerrar(UsuarioAgenda user) {
+        for (Sesion s : sesiones) {
+            if (s.getUsuarioAgenda().equals(user)) {
+                sesiones.remove(s);
+                Fachada.getInstancia().notificar(Observable.Evento.LISTA_SESIONES_ACTUALIZADA);
+            }
+            break;
+        }
     }
 
     public boolean agregar(UsuarioAgenda user) {
