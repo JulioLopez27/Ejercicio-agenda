@@ -40,7 +40,7 @@ public class Fachada extends Observable{
      }
     
     public void cerrar(UsuarioAgenda user){
-        servicioUsuarios.cerarar(user);
+        servicioUsuarios.cerrar(user);
     }
     
     //Logica Usuarios -----------------
