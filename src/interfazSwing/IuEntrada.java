@@ -46,7 +46,7 @@ public class IuEntrada extends javax.swing.JFrame {
         });
         jMenu1.add(jLoginUsuario);
 
-        jMenuItem2.setText("Login usuario Administrado");
+        jMenuItem2.setText("Login usuario Administrador");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
