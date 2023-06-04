@@ -86,6 +86,7 @@ public class VentanaUsuariosConectados extends javax.swing.JDialog implements Ob
     }
 
     private void cerrar() {
+        this.dispose();
         Fachada.getInstancia().desuscribir(this);
     }
 
