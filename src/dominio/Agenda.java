@@ -3,7 +3,7 @@ package dominio;
 import java.util.ArrayList;
 import observer.Observable;
 
-public class Agenda extends Observable{
+public class Agenda extends Observable {
 
     private UsuarioAgenda usuarioAgenda;
 
@@ -28,12 +28,12 @@ public class Agenda extends Observable{
         Contacto contacto = new Contacto(tc, nombre, telefono);
         if (contacto.validar()) {
             contactos.add(contacto);
+            this.notificar(Evento.AGENDA_ACTUALIZADA);
             return true;
         }
         return false;
     }
 
-    
     public void agregarContactoDatosPrueba(Contacto c) {
         contactos.add(c);
     }
