@@ -4,17 +4,20 @@
  */
 package servicios;
 
-import dominio.Contacto;
+import dominio.Sesion;
 import dominio.TipoContacto;
 import dominio.TipoTelefono;
+import dominio.UsuarioAdministrador;
 import dominio.UsuarioAgenda;
 import java.util.ArrayList;
+import java.util.List;
+import observer.Observable;
 
 /**
  *
  * @author Julio Cesar
  */
-public class Fachada {
+public class Fachada extends Observable{
 
     ServicioUsuarios servicioUsuarios = new ServicioUsuarios();
     ServicioAgenda servicioAgenda = new ServicioAgenda();
@@ -31,26 +34,40 @@ public class Fachada {
         return instancia;
     }
 
+    
+     public List<Sesion> getSesionesActivas() {
+       return servicioUsuarios.getSesionesActivas();
+     }
+    
+    public void cerrar(Sesion sesion){
+        servicioUsuarios.cerrar(sesion);
+    }
+    
     //Logica Usuarios -----------------
-    public UsuarioAgenda loginUsuario(String username, String password) {
-        return servicioUsuarios.login(username, password);
+    public Sesion loginUsuarioAgenda(String username, String password) {
+        return servicioUsuarios.loginUsuarioAgenda(username, password);
     }
 
-    public boolean agregarUsuario(UsuarioAgenda user) {
-        return servicioUsuarios.agregar(user);
+    public UsuarioAdministrador loginUsuarioAdministrador(String usuario, String password) {
+        return servicioUsuarios.loginUsuarioAdministrador(usuario, password);
+    }
+
+    public boolean agregar(UsuarioAgenda usuarioAgenda) {
+        return servicioUsuarios.agregar(usuarioAgenda);
+    }
+
+    public boolean agregrar(UsuarioAdministrador usuarioAdministrador) {
+        return servicioUsuarios.agregar(usuarioAdministrador);
     }
 
     //Logica agregar contacto
- 
-    
     //-------------------------------
     //Logica TipoContactos ------
     public ArrayList<TipoContacto> getTiposContactos() {
         return servicioAgenda.getTipoContactos();
     }
 
-  
-    public boolean agregarTipoContacto(TipoContacto tc) {
+    public boolean agregar(TipoContacto tc) {
         return servicioAgenda.agregar(tc);
     }
 
@@ -62,6 +79,6 @@ public class Fachada {
         return servicioAgenda.getTipoTelefonos();
     }
 
-  
+   
 
 }
