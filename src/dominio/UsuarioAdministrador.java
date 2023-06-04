@@ -9,5 +9,10 @@ package dominio;
  * @author Julio Cesar
  */
 public class UsuarioAdministrador extends UsuarioGenerico{
+
+    public UsuarioAdministrador() {
+    }
+    
+    
     //TODO: esta clase va vacia?
 }
