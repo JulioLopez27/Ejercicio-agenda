@@ -178,7 +178,7 @@ public class VentanaAgenda extends javax.swing.JDialog implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        this.usuario.getAgenda().desuscribir(this);
+        cerrar();
         new IuEntrada();
     }//GEN-LAST:event_formWindowClosing
 
@@ -187,12 +187,16 @@ public class VentanaAgenda extends javax.swing.JDialog implements Observer {
     }//GEN-LAST:event_btnCrearContactoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-      listaContactos.setListData(buscarContactos(txtBuscar.getText()).toArray());
+        listaContactos.setListData(buscarContactos(txtBuscar.getText()).toArray());
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void listaContactosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaContactosMousePressed
         this.mostrarDetallesContacto();
     }//GEN-LAST:event_listaContactosMousePressed
+
+    private void cerrar() {
+        Fachada.getInstancia().cerrar(usuario);
+    }
 
     private void cargarInformacionDelUsuarioEnAgenda() {
         inicializarComboTiposContactos();
@@ -282,7 +286,7 @@ public class VentanaAgenda extends javax.swing.JDialog implements Observer {
     public void notificar(Observable origen, Observable.Evento event) {
         Observable.Evento e = (Observable.Evento) event;
         if (e.equals(Observable.Evento.AGENDA_ACTUALIZADA)) {
-           this.cargarInformacionDelUsuarioEnAgenda();
+            this.cargarInformacionDelUsuarioEnAgenda();
         }
     }
 
