@@ -4,6 +4,8 @@
  */
 package dominio;
 
+import exception.AgendaException;
+
 /**
  *
  * @author Julio Cesar
@@ -16,7 +18,7 @@ public abstract class TipoTelefono {
         this.nombre = nombre;
     }
 
-    public abstract boolean esValido(String numero);
+    public abstract void validar(String numero) throws AgendaException;
 
     public String getNombre() {
         return nombre;
