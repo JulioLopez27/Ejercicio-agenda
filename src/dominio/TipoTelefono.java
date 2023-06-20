@@ -4,7 +4,7 @@
  */
 package dominio;
 
-import exception.AgendaException;
+
 
 /**
  *
@@ -18,7 +18,7 @@ public abstract class TipoTelefono {
         this.nombre = nombre;
     }
 
-    public abstract void validar(String numero) throws AgendaException;
+    public abstract boolean esValido(String numero);
 
     public String getNombre() {
         return nombre;
