@@ -9,6 +9,7 @@ import dominio.Telefono;
 import dominio.TipoContacto;
 import dominio.TipoTelefono;
 import dominio.UsuarioAgenda;
+import exception.AgendaException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import observer.Observable;
@@ -242,14 +243,15 @@ public class VentanaAgenda extends javax.swing.JDialog implements Observer {
         TipoContacto tc = (TipoContacto) cTiposContactos.getSelectedItem();
         String nombre = inputNombre.getText();
         Telefono telefono = new Telefono(inputNumero.getText(), (TipoTelefono) cTiposTelefonos.getSelectedItem());
-
-        if (usuario.getAgenda().agregarContacto(tc, nombre, telefono)) {
+        try {
+            usuario.getAgenda().agregarContacto(tc, nombre, telefono);
             inicializarAgenda();
             inicializarInformacionUsuario();
             limpiarInputs();
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo crear el contacto!");
+        } catch (AgendaException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
+
     }
 
     private ArrayList<String> buscarContactos(String cadena) {
