@@ -1,5 +1,6 @@
 package dominio;
 
+import exception.AgendaException;
 import java.util.ArrayList;
 import observer.Observable;
 
@@ -24,14 +25,14 @@ public class Agenda extends Observable {
         return contactos.size();
     }
 
-    public boolean agregarContacto(TipoContacto tc, String nombre, Telefono telefono) {
+    public boolean agregarContacto(TipoContacto tc, String nombre, Telefono telefono) throws AgendaException {
         Contacto contacto = new Contacto(tc, nombre, telefono);
-        if (contacto.validar()) {
-            contactos.add(contacto);
-            this.notificar(Evento.AGENDA_ACTUALIZADA);
-            return true;
-        }
-        return false;
+        //bubble up
+        contacto.validar();
+        contactos.add(contacto);
+        this.notificar(Evento.AGENDA_ACTUALIZADA);
+        return true;
+
     }
 
     public void agregarContactoDatosPrueba(Contacto c) {
