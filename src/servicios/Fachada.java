@@ -9,6 +9,7 @@ import dominio.TipoContacto;
 import dominio.TipoTelefono;
 import dominio.UsuarioAdministrador;
 import dominio.UsuarioAgenda;
+import exception.AgendaException;
 import java.util.ArrayList;
 import java.util.List;
 import observer.Observable;
@@ -52,7 +53,7 @@ public class Fachada extends Observable{
         return servicioUsuarios.loginUsuarioAdministrador(usuario, password);
     }
 
-    public boolean agregar(UsuarioAgenda usuarioAgenda) {
+    public boolean agregar(UsuarioAgenda usuarioAgenda) throws AgendaException {
         return servicioUsuarios.agregar(usuarioAgenda);
     }
 
